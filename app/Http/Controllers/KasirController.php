@@ -79,7 +79,6 @@ class KasirController extends Controller
      */
     public function show(Kasir $kasir)
     {
-
         return view('kasir.show', compact('Kasir'));
     }
 

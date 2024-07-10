@@ -19,8 +19,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'tempat_tinggal',
+        'jenis_kelamin',
         'email',
         'password',
+        'cover',
         'role',
     ];
 
@@ -42,4 +45,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //menghapus img
+    public function deleteImage()
+    {
+        if ($this->cover && file_exists(public_path('images/user' . $this->cover))) {
+            return unlink(public_path('images/user' . $this->cover));
+        }
+    }
 }

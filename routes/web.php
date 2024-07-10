@@ -5,7 +5,7 @@ use App\Http\Middleware\Role;
 use App\Models\Kasir;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -29,3 +29,14 @@ Route::resource('produk', ProdukController::class);
 // Crud Kasir
 use App\Http\Controllers\KasirController;
 Route::resource('kasir', KasirController::class);
+
+// Crud Rekapan
+use App\Http\Controllers\RekapanController;
+Route::resource('rekapan', RekapanController::class);
+
+// Crud Kategori
+use App\Http\Controllers\KategoriController;
+Route::resource('kategori', KategoriController::class);
+
+// use App\Http\Controllers\DashboardController;
+// Route::resource('kategori', DashboardController::class);

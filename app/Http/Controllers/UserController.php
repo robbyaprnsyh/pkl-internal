@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\Role;
-use App\Models\User;
 use App\Models\Produk;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -48,15 +48,28 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'tempat_tinggal' => ['required', 'string', 'max:255'],
+            'jenis_kelamin' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'cover' => ['required'],
         ]);
 
         $user = new User;
         $user->name = $request->name;
+        $user->tempat_tinggal = $request->tempat_tinggal;
+        $user->jenis_kelamin = $request->jenis_kelamin;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-        $user->role = $request->role;
+        $user->cover = $request->cover;
+
+        // upload image
+        if ($request->hasFile('cover')) {
+            $img = $request->file('cover');
+            $name = rand(1000, 9999) . $img->getClientOriginalName();
+            $img->move('images/user', $name);
+            $user->cover = $name;
+        }
         $user->save();
 
         return redirect()->route('user.index')
@@ -96,17 +109,32 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'tempat_tinggal' => ['required', 'string', 'max:255'],
+            'jenis_kelamin' => ['required', 'string', 'max:255'],
             'email' => [
                 'required', 'string', 'email', 'max:255',
                 Rule::unique('users')->ignore($user->id),
             ],
-            // 'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'cover' => ['required'],
         ]);
 
         $user->name = $request->name;
+        $user->tempat_tinggal = $request->tempat_tinggal;
+        $user->jenis_kelamin = $request->jenis_kelamin;
         $user->email = $request->email;
-        // $user->password = Hash::make($request->password);
-        $user->role = $request->role;
+        $user->password = Hash::make($request->password);
+        $user->cover = $request->cover;
+
+        // upload image
+        if ($request->hasFile('cover')) {
+            $user->deleteImage();
+            $img = $request->file('cover');
+            $name = rand(1000, 9999) . $img->getClientOriginalName();
+            $img->move('images/user', $name);
+            $user->cover = $name;
+        }
+
         $user->save();
 
         return redirect()->route('user.index')
@@ -125,7 +153,7 @@ class UserController extends Controller
             $user->delete();
             return redirect()->route('user.index');
         }
-        return redirect()->route('user.index')
-            ->with('success', 'Data Berhasil Di Hapus!');
+        return redirect()->route('user.index');
+        // ->with('success', 'Data Berhasil Di Hapus!');
     }
 }

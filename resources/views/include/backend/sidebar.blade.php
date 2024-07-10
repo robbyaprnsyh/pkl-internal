@@ -22,7 +22,7 @@
                 </li> --}}
             <li>
             <li>
-                <a href="cards.html">
+                <a href="{{ route('home') }}">
                     <div class="parent-icon"><i class="material-icons-outlined">dashboard</i>
                     </div>
                     <div class="menu-title">Dashboard</div>
@@ -34,42 +34,35 @@
                 <a href="{{ route('user.index') }}">
                     <div class="parent-icon"><i class="material-icons-outlined">person</i>
                     </div>
-                    <div class="menu-title">User</div>
+                    <div class="menu-title">Daftar Kasir</div>
                 </a>
             </li>
-            <li>
+            {{-- <li>
                 <a href="{{ route('kasir.index') }}">
                     <div class="parent-icon"><i class="material-icons-outlined">description</i>
                     </div>
                     <div class="menu-title">Daftar Kasir</div>
                 </a>
+            </li> --}}
+            <li>
+                <a href="{{ route('rekapan.index') }}">
+                    <div class="parent-icon"><i class="material-icons-outlined">description</i>
+                    </div>
+                    <div class="menu-title">Rekapan Penjualan</div>
+                </a>
             </li>
             <li>
                 <a href="{{ route('produk.index') }}">
-                    <div class="parent-icon"><i class="material-icons-outlined">description</i>
+                    <div class="parent-icon"><i class="material-icons-outlined">view_agenda</i>
                     </div>
                     <div class="menu-title">Tambah Produk</div>
                 </a>
             </li>
             <li>
-                <a href="javascript:;">
-                    <div class="parent-icon"><i class="material-icons-outlined">shopping_bag</i>
+                <a href="{{ route('kategori.index') }}">
+                    <div class="parent-icon"><i class="material-icons-outlined">inventory_2</i>
                     </div>
-                    <div class="menu-title">eCommerce</div>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <div class="parent-icon"><i class="material-icons-outlined">card_giftcard</i>
-                    </div>
-                    <div class="menu-title">Components</div>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <div class="parent-icon"><i class="material-icons-outlined">view_agenda</i>
-                    </div>
-                    <div class="menu-title">Icons</div>
+                    <div class="menu-title">Kategori</div>
                 </a>
             </li>
         </ul>

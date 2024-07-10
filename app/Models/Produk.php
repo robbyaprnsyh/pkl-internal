@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Produk extends Model
 {
     use HasFactory;
-    protected $fillable = ['id', 'nama_produk', 'harga', 'kategori', 'stok', 'cover'];
+    protected $fillable = ['id', 'nama_produk', 'harga', 'id_kategori', 'stok', 'cover'];
 	public $timestamps = true;
-    // public function produk()
-    // {
-    //     return $this->hasMany(Produk::class);
-    // }
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class, 'id_kategori');
+    }
 }

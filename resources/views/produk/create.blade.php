@@ -8,24 +8,33 @@
                     <h5 class="mb-4">Add Produk</h5>
                     <form class="row g-3">
                         <div class="col-md-12">
-                            <label for="input1" class="form-label">Nama Produk</label>
-                            <input type="text" class="form-control" id="input1">
+                            <label for="input1" class="form-label"><b>Nama Produk</b></label>
+                            <input type="text" class="form-control @error('nama_produk') is-invalid @enderror" name="nama_produk" placeholder="Nama Produk">
+                            @error('nama_produk')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                         </div>
                         <div class="col-md-12 mt-3">
-                            <label for="input3" class="form-label">Harga</label>
-                            <input type="text" class="form-control" id="input3">
+                            <label for="input3" class="form-label"><b>Harga</b></label>
+                            <input type="text" class="form-control" name="harga" placeholder="Harga">
                         </div>
                         <div class="col-md-12 mt-3">
-                            <label for="input4" class="form-label">Kategori</label>
-                            <input type="text" class="form-control" id="input4">
+                            <label for="input4" class="form-label"><b>Kategori</b></label>
+                            <select class="form-control" name="id_kategori">
+                                @foreach ($kategori as $data)
+                                <option value="{{ $data->id }}">{{ $data->nama_kategori }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="col-md-12 mt-3">
-                            <label for="input5" class="form-label">Stok</label>
-                            <input type="text" class="form-control" id="input5">
+                            <label for="input5" class="form-label"><b>Stok</b></label>
+                            <input type="text" class="form-control" name="stok" placeholder="Stok">
                         </div>
                         <div class="col-md-12 mt-3">
-                            <label for="input6" class="form-label">Cover</label>
-                            <input type="file" class="form-control" id="input6">
+                            <label for="input6" class="form-label"><b>Cover</b></label>
+                            <input type="file" class="form-control" name="cover">
                         </div>
 
                         <div class="col-md-12">
