@@ -34,7 +34,7 @@
                             <td>{{ $data->kategori->nama_kategori }}</td>
                             <td>{{ $data->stok }}</td>
                             <td>
-                                <img src="{{ asset('/images/produk/' . $data->cover) }}" width="60">
+                                <img src="{{ asset('/images/produk/' . $data->cover) }}" style="width:100px; height:100%;">
                             </td>
                             <td>
                                 <form action="{{ route('produk.destroy', $data->id) }}" method="POST">

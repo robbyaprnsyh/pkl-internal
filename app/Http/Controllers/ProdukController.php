@@ -17,7 +17,7 @@ class ProdukController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
+    public function index() 
     {
         $produk = Produk::all();
         $kategori = Kategori::all();

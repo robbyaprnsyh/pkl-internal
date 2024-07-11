@@ -9,24 +9,24 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        $user = Auth::user();
-        if ($user->role == 1) {
-            return view('home');
-        } else {
-            return view('produk.index');
-        }
+    // public function index()
+    // {
+    //     $user = Auth::user();
+    //     if ($user->role == 1) {
+    //         return view('home');
+    //     } else {
+    //         return view('produk.index');
+    //     }
 
-    }
+    // }
 }
